@@ -29,9 +29,9 @@ npm i easy-cli-cp
 ### 1. Generate a Page
 
 ```bash
-easy-cli-cp p <page-name>
+ecp p <page-name>
 # or
- easy-cli-cp page <page-name>
+ecp page <page-name>
 ```
 
 - Will ask for the **path** where you want to create the page.
@@ -40,9 +40,9 @@ easy-cli-cp p <page-name>
 ### 2. Generate a List Component
 
 ```bash
-easy-cli-cp l <list-name>
+ecp l <list-name>
 # or
- easy-cli-cp list <list-name>
+ecp list <list-name>
 ```
 
 - Will ask for the **path** where you want to create the list component.
@@ -52,9 +52,9 @@ easy-cli-cp l <list-name>
 ### 3. Generate a Form Component
 
 ```bash
-easy-cli-cp f <form-name>
+ecp f <form-name>
 # or
- easy-cli-cp form <form-name>
+ecp form <form-name>
 ```
 
 - Will ask for the **path** where you want to create the form component.
