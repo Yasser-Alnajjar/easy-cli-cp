@@ -13,7 +13,7 @@ export async function generateSsrList(name, basePath) {
     return;
   }
 
-  const content = ssrListTemplate(`${componentName}s`);
+  const content = ssrListTemplate(`${componentName}s`, componentName);
   await writeFileRecursive(targetFile, content);
 
   console.log(`✅ Component "${name}" created at ${targetFile}`);

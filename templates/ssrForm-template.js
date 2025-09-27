@@ -5,12 +5,11 @@ import { fetchData } from "@lib/client";
 
 export const ${componentName} = async ({ id }: { id: string }) => {
   const user = await fetchData({
-    url: \`/users/\${id}\`
+    url: \`/users/\${id}\`,
     enabled: Boolean(id)
   });
 
   return <${componentName}Form data={user} />;
 };
-
 `;
 }

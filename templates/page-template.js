@@ -26,6 +26,5 @@ const page = () => {
   return <div>${capitalize(name)}</div>
 };
 
-export default page;
-  `;
+export default page;`;
 }

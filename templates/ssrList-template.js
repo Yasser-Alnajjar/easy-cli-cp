@@ -1,12 +1,12 @@
 import { pascalCaseWithSpace } from "../utils/utils.js";
 
-export function ssrListTemplate(componentName) {
+export function ssrListTemplate(componentName, listName) {
   return `import React from "react";
-import { ${componentName}List } from "../csr";
+import { ${listName}List } from "../csr";
 
 export const ${componentName} = async () => {
   return (
-    <${componentName}List
+    <${listName}List
       data={[]}
       columns={[
         {
