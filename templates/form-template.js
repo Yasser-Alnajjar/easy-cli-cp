@@ -1,4 +1,4 @@
-export function formTemplate(componentName, namespace = "common", module) {
+export function formTemplate(componentName, namespace, module) {
   return `"use client";
 import React from "react";
 import { FormikHelpers } from "formik";
@@ -13,8 +13,15 @@ export const ${componentName}Form = ({ data }: { data: any }) => {
   // === Basic Fields ===
   const fields: Array<ISchema> = [
     {
-      name: "risk_type",
-      label: t("${namespace}.risk_type"),
+      name: "course_number",
+      label: t("${namespace}.course_number"),
+      type: "text",
+      required: true,
+      col: "lg:col-span-6",
+    },
+    {
+      name: "course_status",
+      label: t("${namespace}.course_status"),
       type: "select",
       options: [
         { label: "Option 1", value: "option-1" },
@@ -25,19 +32,13 @@ export const ${componentName}Form = ({ data }: { data: any }) => {
       col: "lg:col-span-6",
     },
     {
-      name: "risk_level",
-      label: t("${namespace}.risk_level"),
-      type: "text",
+      name: "completion_date",
+      label: t("${namespace}.completion_date"),
+      type: "date",
       required: true,
       col: "lg:col-span-6",
     },
   ];
-
-  const descriptionField: ISchema = {
-    name: "mitigation_plan",
-    label: t("${namespace}.mitigation_plan"),
-    type: "textarea",
-  };
 
   const attachmentsField: ISchema = {
     name: "attachments",
@@ -47,7 +48,6 @@ export const ${componentName}Form = ({ data }: { data: any }) => {
 
   const groups: Array<IFieldGroup> = [
     { fields: fields },
-    { fields: [descriptionField] },
     { fields: [attachmentsField] },
   ];
 
