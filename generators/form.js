@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { pascalCase, writeFileRecursive } from "../utils/utils.js";
 import { formTemplate } from "../templates/form-template.js";
 
-export async function generateForm(name, basePath) {
+export async function generateForm(name, basePath, config) {
   try {
     await fs.access(basePath);
   } catch {
@@ -24,7 +24,7 @@ export async function generateForm(name, basePath) {
   }
 
   const namespace = name.replaceAll("-", "_") || "common";
-  const content = formTemplate(componentName, namespace);
+  const content = formTemplate(componentName, namespace, config.modulePath);
 
   await writeFileRecursive(targetFile, content);
 

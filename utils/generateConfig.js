@@ -27,10 +27,10 @@ const questions = [
     default: () => "src/app",
   },
   {
-    name: "style",
-    type: "list",
-    message: "What style language do you use?",
-    choices: ["css", "styl", "less", "scss", "none"],
+    name: "modulePath",
+    type: "input",
+    message:
+      "Write the path you want to save your modules (pages, forms, lists, etc.) in.",
   },
 ];
 

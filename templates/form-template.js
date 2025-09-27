@@ -1,4 +1,4 @@
-export function formTemplate(componentName, namespace = "common") {
+export function formTemplate(componentName, namespace = "common", module) {
   return `"use client";
 import React from "react";
 import { FormikHelpers } from "formik";
@@ -8,7 +8,7 @@ import { useBuildYupSchema, useQueryParams, useTranslate } from "@hooks";
 import type { ISchema } from "@hooks";
 
 export const ${componentName}Form = ({ data }: { data: any }) => {
-  const t = useTranslate("${namespace}");
+  const t = useTranslate("${module}");
 
   // === Basic Fields ===
   const fields: Array<ISchema> = [

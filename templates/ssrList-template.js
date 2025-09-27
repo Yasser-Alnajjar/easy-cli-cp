@@ -1,5 +1,3 @@
-import { pascalCaseWithSpace } from "../utils/utils.js";
-
 export function ssrListTemplate(componentName, listName) {
   return `import React from "react";
 import { ${listName}List } from "../csr";
@@ -23,8 +21,8 @@ export const ${componentName} = async () => {
         },
       ]}
       infos={{ 
-      title: "${pascalCaseWithSpace(componentName)}", 
-      desc: "${pascalCaseWithSpace(componentName)}" 
+      title: "${componentName}", 
+      desc: "${componentName}" 
       }}
     />
   );

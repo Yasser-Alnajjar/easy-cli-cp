@@ -1,3 +1,4 @@
+import inquirer from "inquirer";
 import { generateSsrList } from "../generators/ssrList.js";
 
 export function initSsrList(config, program) {

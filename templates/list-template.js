@@ -1,4 +1,4 @@
-export function listTemplate(componentName, baseUrl, namespace) {
+export function listTemplate(componentName, baseUrl, namespace, module) {
   return `"use client";
 
 import React from "react";
@@ -21,9 +21,9 @@ export const ${componentName}List = ({
   infos: { title: string; desc: string };
 }) => {
   const router = useRouter();
-  const t = useTranslate("${namespace}");
+  const t = useTranslate("${module}");
 
-  const baseUrl = "${baseUrl}";
+  const baseUrl = "/${module}${baseUrl}";
 
   const parsedColumns = useBuildColumns<any>(columns);
 

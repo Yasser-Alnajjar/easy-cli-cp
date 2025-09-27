@@ -3,7 +3,7 @@ import fs from "fs/promises";
 import { pascalCase, writeFileRecursive } from "../utils/utils.js";
 import { listTemplate } from "../templates/list-template.js";
 
-export async function generateList(name, basePath) {
+export async function generateList(name, basePath, config) {
   try {
     await fs.access(basePath);
   } catch {
@@ -25,7 +25,12 @@ export async function generateList(name, basePath) {
 
   const baseUrl = `/${name.replace(/_/g, "-")}`;
   const namespace = name.replaceAll("-", "_") || "common";
-  const content = listTemplate(componentName, baseUrl, namespace);
+  const content = listTemplate(
+    componentName,
+    baseUrl,
+    namespace,
+    config.modulePath
+  );
 
   await writeFileRecursive(targetFile, content);
 

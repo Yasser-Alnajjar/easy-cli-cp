@@ -7,7 +7,7 @@ import {
 } from "../utils/utils.js";
 import { pageTemplate } from "../templates/page-template.js";
 
-export async function generatePage(name, basePath) {
+export async function generatePage(name, basePath, config) {
   const targetPath = path.join(basePath, name);
 
   if (await fileExists(targetPath)) {
@@ -20,7 +20,8 @@ export async function generatePage(name, basePath) {
   const content = pageTemplate(
     true,
     componentName,
-    pascalCase(`${componentName}s`)
+    pascalCase(`${componentName}s`),
+    config.modulePath
   );
 
   await writeFileRecursive(`${targetPath}/page.${ext}`, content);

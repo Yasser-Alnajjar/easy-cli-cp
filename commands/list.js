@@ -14,6 +14,6 @@ export function initList(config, program) {
           default: config.componentsPath || "src/components",
         },
       ]);
-      await generateList(name, basePath);
+      await generateList(name, basePath, config);
     });
 }

@@ -39,7 +39,7 @@ export function initForm(config, program) {
       }
 
       const namespace = name.replaceAll("-", "_") || "common";
-      const content = formTemplate(componentName, namespace);
+      const content = formTemplate(componentName, namespace, config.modulePath);
 
       await writeFileRecursive(targetFile, content);
 

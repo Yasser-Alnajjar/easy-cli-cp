@@ -29,10 +29,10 @@ export function initModule(config, program) {
       const componentName = pascalCase(name);
 
       // generate files
-      await generatePage(name, config.pagesPath || "src/app");
-      await generateFormPage(name, config.pagesPath || "src/app");
-      await generateForm(name, csrPath);
-      await generateList(name, csrPath);
+      await generatePage(name, config.pagesPath || "src/app", config);
+      await generateFormPage(name, config.pagesPath || "src/app", config);
+      await generateForm(name, csrPath, config);
+      await generateList(name, csrPath, config);
       await generateSsrForm(name, ssrPath);
       await generateSsrList(name, ssrPath);
 

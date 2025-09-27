@@ -15,6 +15,7 @@ export function initFormPage(config, program) {
           default: config.pagesPath || "src/app",
         },
       ]);
-      await generateFormPage(name, basePath);
+      await generateFormPage(name, basePath, config);
     });
 }
+``;

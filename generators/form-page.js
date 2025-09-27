@@ -7,7 +7,7 @@ import {
 } from "../utils/utils.js";
 import { formPageTemplate } from "../templates/form-page-template.js";
 
-export async function generateFormPage(name, basePath) {
+export async function generateFormPage(name, basePath, config) {
   const targetPath = path.join(basePath, name, "form");
 
   await fs.mkdir(targetPath, { recursive: true });
@@ -16,7 +16,12 @@ export async function generateFormPage(name, basePath) {
   const componentName = pascalCase(name);
   const title = pascalCaseWithSpace(name);
 
-  const content = formPageTemplate(true, `New ${title}`, componentName);
+  const content = formPageTemplate(
+    true,
+    `New ${title}`,
+    componentName,
+    config.modulePath
+  );
 
   await writeFileRecursive(path.join(targetPath, `page.${ext}`), content);
 
