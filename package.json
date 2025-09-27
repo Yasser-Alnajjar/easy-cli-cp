@@ -1,6 +1,6 @@
 {
   "name": "easy-cli-cp",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "repository": {
     "type": "git",
     "url": "https://github.com/Yasser-Alnajjar/easy-cli-cp.git"
@@ -14,8 +14,7 @@
   "keywords": [
     "cli",
     "frontend",
-    "react",
-    "vue"
+    "react"
   ],
   "author": "Yasser Alnajjar",
   "license": "ISC",

@@ -4,7 +4,7 @@ import fs from "fs/promises";
 import { pascalCase, writeFileRecursive } from "../utils/utils.js";
 import { formTemplate } from "../templates/form-template.js";
 
-export function initForm(program) {
+export function initForm(config, program) {
   program
     .command("form <name>")
     .alias("f")
@@ -15,7 +15,7 @@ export function initForm(program) {
           type: "input",
           name: "basePath",
           message: "Where do you want to create the form component?",
-          default: "src/components",
+          default: config.componentsPath || "src/components",
         },
       ]);
 

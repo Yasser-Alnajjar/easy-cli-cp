@@ -1,13 +1,7 @@
-import path from "node:path";
 import inquirer from "inquirer";
-import {
-  fileExists,
-  pascalCaseWithSpace,
-  writeFileRecursive,
-} from "../utils/utils.js";
-import { pageTemplate } from "../templates/page-template.js";
+import { generatePage } from "../generators/page.js";
 
-export function initPage(program) {
+export function initPage(config, program) {
   program
     .command("page <name>")
     .alias("p")
@@ -18,24 +12,9 @@ export function initPage(program) {
           type: "input",
           name: "basePath",
           message: "Where do you want to create the page?",
-          default: "src/app",
+          default: config.pagesPath || "src/app",
         },
       ]);
-
-      const targetPath = path.join(basePath, name);
-
-      if (await fileExists(targetPath)) {
-        console.log(`⚠️ Page "${name}" already exists.`);
-        return;
-      }
-
-      const ext = "tsx";
-      const componentName = pascalCaseWithSpace(name);
-
-      const content = pageTemplate(true, componentName);
-
-      await writeFileRecursive(`${targetPath}/page.${ext}`, content);
-
-      console.log(`✅ Page "${name}" created at ${targetPath}`);
+      await generatePage(name, basePath);
     });
 }
