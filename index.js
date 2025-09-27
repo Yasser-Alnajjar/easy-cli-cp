@@ -18,7 +18,7 @@ export default async function initCLI() {
   const program = new Command();
 
   program
-    .name("easy-cli-cp")
+    .name("ecp")
     .description("CLI tool to scaffold components and pages.")
     .version(pkg.version);
 
