@@ -1,14 +1,25 @@
 #!/usr/bin/env node
 
+import { createRequire } from "module";
 import { Command } from "commander";
+import { initPage } from "./commands/page.js";
+import { initList } from "./commands/list.js";
+import { initForm } from "./commands/form.js";
 
-import { getCLIConfigFile } from "./utils/generateConfig.js";
-import initComponent from "./commands/initComponent.js";
+const localRequire = createRequire(import.meta.url);
+const pkg = localRequire("./package.json");
 
-async function main() {
-  const cliConfigFile = await getCLIConfigFile();
-
+export default async function initCLI() {
   const program = new Command();
-  initComponent(cliConfigFile, program);
+
+  program
+    .name("easy-cli-cp")
+    .description("CLI tool to scaffold components and pages.")
+    .version(pkg.version);
+
+  initPage(program);
+  initList(program);
+  initForm(program);
+  program.parse(process.argv);
 }
-main();
+initCLI();

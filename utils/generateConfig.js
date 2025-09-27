@@ -1,8 +1,9 @@
-import chalk from "chalk";
+import { bold, magenta, cyan, red } from "colorette";
 
 import deepKeys from "deep-keys";
 import inquirer from "inquirer";
 import fsExtra from "fs-extra";
+import { merge } from "./utils.js";
 
 const { accessSync, constants, outputFileSync, readFileSync } = fsExtra;
 const { prompt } = inquirer;
@@ -14,21 +15,21 @@ const questions = [
     message: "Do you want to use typescript ?",
   },
   {
-    name: "path",
+    name: "componentsPath",
     type: "input",
-    message: "Write the path you want to send files on it.",
+    message: "Write the path you want to save your components in.",
     default: () => "src/components",
   },
   {
-    name: "framework",
-    type: "list",
-    message: "choose a framework you want.",
-    choices: ["react", "vue"],
+    name: "pagesPath",
+    type: "input",
+    message: "Write the path you want to save your pages in.",
+    default: () => "src/app",
   },
   {
     name: "style",
     type: "list",
-    message: "What you style language you use ?",
+    message: "What style language do you use?",
     choices: ["css", "styl", "less", "scss", "none"],
   },
 ];
@@ -38,16 +39,16 @@ async function createCLIConfigFile() {
     console.log();
     console.log();
     console.log(
-      chalk.bold(
-        chalk.magenta(
+      bold(
+        magenta(
           "It looks like this is the first time that you're running easy-cli-cp within this project."
         )
       )
     );
     console.log();
     console.log(
-      chalk.bold(
-        chalk.magenta(
+      bold(
+        magenta(
           'Answer a few questions to customize easy-cli-cp for your project needs (this will create a "easy-cli-cp.config.json" config file on the root level of this project).'
         )
       )
@@ -61,7 +62,7 @@ async function createCLIConfigFile() {
 
     console.log();
     console.log(
-      chalk.cyan(
+      cyan(
         'The "easy-cli-cp.config.json" config file has been successfully created on the root level of your project.'
       )
     );
@@ -69,8 +70,8 @@ async function createCLIConfigFile() {
     return answers;
   } catch (error) {
     console.error(
-      chalk.red.bold(
-        'ERROR: Could not create a "easy-cli-cp.config.json" config file.'
+      bold(
+        red('ERROR: Could not create a "easy-cli-cp.config.json" config file.')
       )
     );
     return error;
@@ -81,23 +82,23 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
   try {
     console.log("");
     console.log(
-      chalk.cyan(
+      cyan(
         "------------------------------------------------------------------------------------------------------------------------------"
       )
     );
     console.log(
-      chalk.cyan(
+      cyan(
         "Easy cli cp has been updated and has a few new features from the last time you ran it within this project."
       )
     );
     console.log("");
     console.log(
-      chalk.cyan(
+      cyan(
         'Please answer a few questions to update the "easy-cli-cp.config.json" config file.'
       )
     );
     console.log(
-      chalk.cyan(
+      cyan(
         "------------------------------------------------------------------------------------------------------------------------------"
       )
     );
@@ -113,25 +114,27 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
 
     console.log();
     console.log(
-      chalk.cyan(
+      cyan(
         'The ("easy-cli-cp.config.json") has successfully updated for this project.'
       )
     );
 
     console.log();
     console.log(
-      chalk.cyan("You can always go back and manually update it as needed.")
+      cyan("You can always go back and manually update it as needed.")
     );
     console.log();
-    console.log(chalk.cyan("Happy Hacking!"));
+    console.log(cyan("Happy Hacking!"));
     console.log();
     console.log();
 
     return updatedAnswers;
   } catch (error) {
     console.error(
-      chalk.red.bold(
-        'ERROR: Could not update the "easy-cli-cp.config.json" config file.'
+      bold(
+        red(
+          'ERROR: Could not update the "easy-cli-cp.config.json" config file.'
+        )
       )
     );
     return error;
@@ -141,8 +144,6 @@ async function updateCLIConfigFile(missingConfigQuestions, currentConfigFile) {
 export async function getCLIConfigFile() {
   try {
     accessSync("./package.json", constants.R_OK);
-
-    // --- Check to see if the config file exists
 
     try {
       accessSync("./easy-cli-cp.config.json", constants.R_OK);
@@ -169,8 +170,10 @@ export async function getCLIConfigFile() {
     }
   } catch (error) {
     console.error(
-      chalk.red.bold(
-        "ERROR: Please make sure that you're running the easy-cli-cp commands from the root level of your project"
+      bold(
+        red(
+          "ERROR: Please make sure that you're running the easy-cli-cp commands from the root level of your project"
+        )
       )
     );
     return process.exit(1);

@@ -1,6 +1,6 @@
 import fs from "node:fs";
 
-import reactTemplate from "../templates/react.js";
+import reactTemplate from "../templates/page-template.js";
 import vueTemplate from "../templates/vue.js";
 import capitalize from "./capitalize.js";
 

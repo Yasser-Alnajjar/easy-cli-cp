@@ -1,47 +1,62 @@
 # easy-cli-cp
 
-<!-- 2.Introduction -->
-
-easy-cli-cp is a very small library that helps you create your component files without having to do it manually.
-
-<!-- 3.Technologies -->
+easy-cli-cp is a lightweight CLI tool to quickly scaffold React components, Next.js pages, lists, and forms without writing boilerplate manually.
 
 ## Technologies
 
-The following techniques were used in this project:
-
 - commander
 - inquirer
-- deep-keys
-- fs-extra
-- chalk
+- colorette
+- fs/promises
 
 ## Features
 
-- [x] Config file ...
-- [x] React ...
-- [x] Vue ...
-- [x] typescript ...
+- [x] Generate React components
+- [x] Generate Next.js pages
+- [x] Generate List components
+- [x] Generate Form components
+- [x] Fully TypeScript-ready templates
+- [x] Ask user for target path
 
-1. Install:
+## Installation
 
-```cmd
+```bash
 npm i easy-cli-cp
 ```
 
-2. Usage:
+## Usage
 
-A. Write easy-cli-cp to generate config file
+### 1. Generate a Page
 
-```cmd
-easy-cli-cp
+```bash
+easy-cli-cp p <page-name>
+# or
+ easy-cli-cp page <page-name>
 ```
 
-B. generate you component:
+- Will ask for the **path** where you want to create the page.
+- Creates a Next.js page file with a basic template.
 
-```cmd
-easy-cli-cp generate <component name>
+### 2. Generate a List Component
+
+```bash
+easy-cli-cp l <list-name>
+# or
+ easy-cli-cp list <list-name>
 ```
 
-> [!NOTE]
-> You can use an alternative [ g ] shortcut to [ generate ]
+- Will ask for the **path** where you want to create the list component.
+- Checks if any file with `List` in its name already exists.
+- Generates a ready-to-use DataTable list component.
+
+### 3. Generate a Form Component
+
+```bash
+easy-cli-cp f <form-name>
+# or
+ easy-cli-cp form <form-name>
+```
+
+- Will ask for the **path** where you want to create the form component.
+- Checks if any file with `Form` in its name already exists.
+- Generates a ready-to-use Form component using Formik and DynamicForm.
