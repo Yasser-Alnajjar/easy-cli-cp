@@ -1,6 +1,7 @@
 import path from "node:path";
 import {
   fileExists,
+  pascalCase,
   pascalCaseWithSpace,
   writeFileRecursive,
 } from "../utils/utils.js";
@@ -16,7 +17,11 @@ export async function generatePage(name, basePath) {
 
   const ext = "tsx";
   const componentName = pascalCaseWithSpace(name);
-  const content = pageTemplate(true, componentName);
+  const content = pageTemplate(
+    true,
+    componentName,
+    pascalCase(`${componentName}s`)
+  );
 
   await writeFileRecursive(`${targetPath}/page.${ext}`, content);
 

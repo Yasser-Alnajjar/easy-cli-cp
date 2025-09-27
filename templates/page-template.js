@@ -1,19 +1,17 @@
-import { capitalize } from "../utils/utils.js";
-
-export function pageTemplate(typescript, name) {
+export function pageTemplate(typescript, name, componentName) {
   if (typescript) {
-    return typescriptTemp(name);
+    return typescriptTemp(name, componentName);
   } else {
     return `
   import React from "react";
   const page = () => {
-  return <div>${capitalize(name)}</div>
+  return <${componentName}/>
 };
 
 export default page;`;
   }
 }
-function typescriptTemp(name) {
+function typescriptTemp(name, componentName) {
   return `
 import React from "react";
 import { Metadata } from "next";
@@ -23,7 +21,7 @@ export const metadata:Metadata = {
 };
 
 const page = () => {
-  return <div>${capitalize(name)}</div>
+  return <${componentName}/>
 };
 
 export default page;`;

@@ -9,6 +9,7 @@ import { initSsrList } from "./commands/ssrlist.js";
 import { getCLIConfigFile } from "./utils/generateConfig.js";
 import { initSsrForm } from "./commands/ssrForm.js";
 import { initModule } from "./commands/module.js";
+import { initFormPage } from "./commands/form-page.js";
 
 const localRequire = createRequire(import.meta.url);
 const pkg = localRequire("./package.json");
@@ -25,6 +26,7 @@ export default async function initCLI() {
 
   initModule(config, program);
   initPage(config, program);
+  initFormPage(config, program);
   initList(config, program);
   initForm(config, program);
   initSsrList(config, program);

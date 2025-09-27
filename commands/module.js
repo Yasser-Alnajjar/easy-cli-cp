@@ -6,6 +6,7 @@ import { generateForm } from "../generators/form.js";
 import { generateList } from "../generators/list.js";
 import { generateSsrList } from "../generators/ssrList.js";
 import { pascalCase, writeFileRecursive } from "../utils/utils.js";
+import { generateFormPage } from "../generators/form-page.js";
 
 export function initModule(config, program) {
   program
@@ -29,6 +30,7 @@ export function initModule(config, program) {
 
       // generate files
       await generatePage(name, config.pagesPath || "src/app");
+      await generateFormPage(name, config.pagesPath || "src/app");
       await generateForm(name, csrPath);
       await generateList(name, csrPath);
       await generateSsrForm(name, ssrPath);
